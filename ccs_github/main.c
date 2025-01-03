@@ -4,9 +4,15 @@
 /**
  * main.c
  */
-int main(void)
+void main(void)
 {
 	WDTCTL = WDTPW | WDTHOLD;	// stop watchdog timer
+
+	P1DIR |= BIT0;
 	PM5CTL0 &= ~LOCKLPM5;
-	return 0;
+
+	while(1){
+	    _delay_cycles(1e6);
+	    P1OUT ^= BIT0;
+	}
 }
